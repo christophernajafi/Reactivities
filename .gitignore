@@ -446,3 +446,6 @@ $RECYCLE.BIN/
 
 # SQLite
 *.db
+
+# ES Lint
+.eslintcache
