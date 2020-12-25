@@ -445,4 +445,4 @@ $RECYCLE.BIN/
 .vscode
 
 # SQLite
-# *.db
+*.db
