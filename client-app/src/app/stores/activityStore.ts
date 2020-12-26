@@ -44,7 +44,6 @@ class ActivityStore {
         });
         this.loadingInitial = false;
       });
-      console.log("la: ", this.groupActivitiesByDate(activities));
     } catch (error) {
       runInAction("load activities error", () => {
         this.loadingInitial = false;
