@@ -1,6 +1,6 @@
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using MediatR;
 
 namespace API.Controllers
 {

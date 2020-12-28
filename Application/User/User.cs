@@ -1,5 +1,6 @@
 namespace Application.User
 {
+
     public class User
     {
         public string DisplayName { get; set; }
