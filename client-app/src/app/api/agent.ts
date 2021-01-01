@@ -1,3 +1,4 @@
+import { IPhoto, IProfile } from "./../models/profile";
 import { IUser, IUserFormValues } from "./../models/user";
 import { IActivity } from "./../models/activity";
 import axios, { AxiosResponse } from "axios";
@@ -53,6 +54,15 @@ const requests = {
   put: (url: string, body: {}) =>
     axios.put(url, body).then(sleep(500)).then(responseBody),
   del: (url: string) => axios.delete(url).then(sleep(500)).then(responseBody),
+  postForm: (url: string, file: Blob) => {
+    let formData = new FormData();
+    formData.append("File", file);
+    return axios
+      .post(url, formData, {
+        headers: { "Content-type": "multipart/form-data" },
+      })
+      .then(responseBody);
+  },
 };
 
 // const requests = {
@@ -81,8 +91,18 @@ const User = {
     requests.post(`/user/register`, user),
 };
 
+const Profiles = {
+  get: (username: string): Promise<IProfile> =>
+    requests.get(`/profiles/${username}`),
+  uploadPhoto: (photo: Blob): Promise<IPhoto> =>
+    requests.postForm(`/photos`, photo),
+  setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}),
+  deletePhoto: (id: string) => requests.del(`/photos/${id}`),
+};
+
 // eslint-disable-next-line
 export default {
   Activities,
   User,
+  Profiles,
 };
