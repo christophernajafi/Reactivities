@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System.Text;
 using API.Middleware;
 using Application.Activities;
@@ -20,6 +21,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Persistence;
+using API.SignalR;
 
 namespace API
 {
@@ -44,11 +46,13 @@ namespace API
             {
                 opt.AddPolicy("CorsPolicy", policy =>
                  {
-                     policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                     policy.AllowAnyHeader().AllowAnyMethod()
+                     .WithOrigins("http://localhost:3000").AllowCredentials();
                  });
             });
             services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(List.Handler));
+            services.AddSignalR();
             services.AddControllers(opt =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
@@ -75,14 +79,28 @@ namespace API
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(OptionsBuilderConfigurationExtensions =>
+            .AddJwtBearer(opt =>
             {
-                OptionsBuilderConfigurationExtensions.TokenValidationParameters = new TokenValidationParameters
+                opt.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = key,
                     ValidateAudience = false,
                     ValidateIssuer = false
+                };
+                opt.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                      {
+                          var accessToken = context.Request.Query["access_token"];
+                          var path = context.HttpContext.Request.Path;
+                          if (!string.IsNullOrEmpty(accessToken)
+                            && (path.StartsWithSegments("/chat")))
+                          {
+                              context.Token = accessToken;
+                          }
+                          return Task.CompletedTask;
+                      }
                 };
             });
 
@@ -112,6 +130,7 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }
