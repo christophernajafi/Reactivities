@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.errors;
+using Application.Errors;
 using MediatR;
 using Persistence;
 

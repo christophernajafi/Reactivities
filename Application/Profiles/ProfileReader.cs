@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Application.errors;
+using Application.Errors;
 using Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistence;

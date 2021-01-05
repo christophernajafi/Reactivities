@@ -7,7 +7,7 @@ using Application.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
-using Application.errors;
+using Application.Errors;
 
 namespace Application.Photos
 {
