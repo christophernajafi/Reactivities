@@ -87,7 +87,7 @@ export default class ActivityStore {
 
     this.hubConnection
       .start()
-      // .then(() => console.log(this.hubConnection!.state))
+      .then(() => console.log(this.hubConnection!.state))
       .then(() => {
         if (this.hubConnection!.state === "Connected") {
           this.hubConnection!.invoke("AddToGroup", activityId);
@@ -112,7 +112,7 @@ export default class ActivityStore {
         this.hubConnection!.stop();
       })
       .then(() => {
-        // console.log("Connection stopped");
+        console.log("Connection stopped");
       })
       .catch((err) => console.log(err));
   };
