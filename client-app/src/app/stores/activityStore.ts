@@ -2,7 +2,14 @@ import { createAttendee } from "./../common/util/util";
 import { RootStore } from "./rootStore";
 import { toast } from "react-toastify";
 import { history } from "./../../index";
-import { observable, action, computed, runInAction, reaction } from "mobx";
+import {
+  observable,
+  action,
+  computed,
+  runInAction,
+  reaction,
+  toJS,
+} from "mobx";
 import { SyntheticEvent } from "react";
 import { IActivity } from "./../models/activity";
 import agent from "../api/agent";
@@ -72,7 +79,7 @@ export default class ActivityStore {
 
   @action createHubConnection = (activityId: string) => {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl("http://localhost:5000/chat", {
+      .withUrl(process.env.REACT_APP_API_CHAT_URL!, {
         accessTokenFactory: () => this.rootStore.commonStore.token!,
       })
       .configureLogging(LogLevel.Information)
@@ -80,7 +87,7 @@ export default class ActivityStore {
 
     this.hubConnection
       .start()
-      .then(() => console.log(this.hubConnection!.state))
+      // .then(() => console.log(this.hubConnection!.state))
       .then(() => {
         if (this.hubConnection!.state === "Connected") {
           this.hubConnection!.invoke("AddToGroup", activityId);
@@ -105,7 +112,7 @@ export default class ActivityStore {
         this.hubConnection!.stop();
       })
       .then(() => {
-        console.log("Connection stopped");
+        // console.log("Connection stopped");
       })
       .catch((err) => console.log(err));
   };
@@ -165,7 +172,7 @@ export default class ActivityStore {
     let activity = this.getActivity(id);
     if (activity) {
       this.activity = activity;
-      return activity;
+      return toJS(activity);
     } else {
       this.loadingInitial = true;
       try {
