@@ -5,6 +5,7 @@ using Application.Interfaces;
 using Domain;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Persistence;
 
 namespace Application.User
 {
@@ -17,8 +18,7 @@ namespace Application.User
             private readonly UserManager<AppUser> _userManager;
             private readonly IJwtGenerator _jwtGenerator;
             private readonly IUserAccessor _userAccessor;
-            public Handler(UserManager<AppUser> userManager, IJwtGenerator jwtGenerator,
-            IUserAccessor userAccessor)
+            public Handler(UserManager<AppUser> userManager, IJwtGenerator jwtGenerator, IUserAccessor userAccessor)
             {
                 _userAccessor = userAccessor;
                 _jwtGenerator = jwtGenerator;
@@ -29,13 +29,11 @@ namespace Application.User
             {
                 var user = await _userManager.FindByNameAsync(_userAccessor.GetCurrentUsername());
 
-                return new User
-                {
-                    DisplayName = user.DisplayName,
-                    Username = user.UserName,
-                    Token = _jwtGenerator.CreateToken(user),
-                    Image = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
-                };
+                var refreshToken = _jwtGenerator.GenerateRefreshToken();
+                user.RefreshTokens.Add(refreshToken);
+                await _userManager.UpdateAsync(user);
+
+                return new User(user, _jwtGenerator, refreshToken.Token);
             }
         }
     }

@@ -8,6 +8,7 @@ using Domain;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Persistence;
 
 namespace Application.User
 {
@@ -47,18 +48,17 @@ namespace Application.User
                 if (user == null)
                     throw new RestException(HttpStatusCode.Unauthorized);
 
-                var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+                // if (!user.EmailConfirmed) throw new RestException(HttpStatusCode.BadRequest, new { Email = "Email is not confirmed" });
+
+                var result = await _signInManager
+                    .CheckPasswordSignInAsync(user, request.Password, false);
 
                 if (result.Succeeded)
                 {
-                    // TODO: generate token
-                    return new User
-                    {
-                        DisplayName = user.DisplayName,
-                        Token = _jwtGenerator.CreateToken(user),
-                        Username = user.UserName,
-                        Image = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
-                    };
+                    var refreshToken = _jwtGenerator.GenerateRefreshToken();
+                    user.RefreshTokens.Add(refreshToken);
+                    await _userManager.UpdateAsync(user);
+                    return new User(user, _jwtGenerator, refreshToken.Token);
                 }
 
                 throw new RestException(HttpStatusCode.Unauthorized);
