@@ -37,7 +37,7 @@ const RegisterForm = () => {
         <Form onSubmit={handleSubmit} error>
           <Header
             as="h2"
-            content="Sign up to Reactivities"
+            content="Sign Up to Reactivities"
             color="teal"
             textAlign="center"
           />
@@ -55,11 +55,7 @@ const RegisterForm = () => {
             type="password"
           />
           {submitError && !dirtySinceLastSubmit && (
-            <ErrorMessage
-              error={submitError}
-              text=""
-              //   text={JSON.stringify(submitError.data.errors)}
-            />
+            <ErrorMessage error={submitError} text="" />
           )}
           <Button
             disabled={(invalid && !dirtySinceLastSubmit) || pristine}
@@ -68,7 +64,6 @@ const RegisterForm = () => {
             content="Register"
             fluid
           />
-          {/* <pre>{JSON.stringify(form.getState(), null, 2)}</pre> */}
         </Form>
       )}
     />

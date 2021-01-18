@@ -53,7 +53,8 @@ namespace Application.User
                     DisplayName = userInfo.Name,
                     Id = userInfo.Id,
                     Email = userInfo.Email,
-                    UserName = "fb_" + userInfo.Id
+                    UserName = "fb_" + userInfo.Id,
+                    EmailConfirmed = true
                 };
 
                 var photo = new Photo
@@ -64,7 +65,7 @@ namespace Application.User
                 };
 
                 user.Photos.Add(photo);
-                user.RefreshTokens.Add(refreshToken);
+                // user.RefreshTokens.Add(refreshToken);
 
                 var result = await _userManager.CreateAsync(user);
 
