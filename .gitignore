@@ -446,6 +446,8 @@ $RECYCLE.BIN/
 
 # SQLite
 *.db
+*.db-shm
+*.db-wal
 
 # ES Lint
 .eslintcache
@@ -456,6 +458,5 @@ obj
 .vscode
 .DS_Store
 appsettings.json
-*.db
 wwwroot
-# publish
+publish
