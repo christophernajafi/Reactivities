@@ -37,7 +37,7 @@ const LoginForm = () => {
         <Form onSubmit={handleSubmit} error autoComplete="off">
           <Header
             as="h2"
-            content="Login to Reactivities"
+            content="Login to B&amp;B Activities Manager"
             color="teal"
             textAlign="center"
           />
