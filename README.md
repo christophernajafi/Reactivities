@@ -1,6 +1,6 @@
 # B&B Activities Manager
 
-A single-page application that enables a Bed & Breakfast host to schedule activities for their guests and enables the guests to sign-up online, leave comments, and ask questions to the host.
+Social media app where Bed & Breakfast hosts can register an account, post an activity, and connect with their guests. Bed & Breakfast guests can join activities, leave comments, and ask questions to the host.
 
 ## Deployed Link
 
