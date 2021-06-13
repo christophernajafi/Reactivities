@@ -15,7 +15,7 @@ Social media app where Bed & Breakfast hosts can register an account, post an ac
 - Structured back end using the Clean Architecture approach and CQRS and Mediator patterns.
 - Database constructed using Entity Framework Core and Microsoft SQL Server.
 - Authentication and authorization using .Net Core Identity.
-- Photo upload feature with ability to crop and resize images using Dropzone and Cropper libraries.
+- Photo upload feature with ability to crop and resize images using Dropzone and Cropper libraries and Cloudinary API.
 - OAuth using Facebook Login.
 - Email verification and password reset using Twilio SendGrid API.
 - CORS enabled cross-origin requests.
