@@ -4,7 +4,7 @@ A single-page application that enables a Bed & Breakfast host to schedule activi
 
 ## Deployed Link
 
-<https://azurewebsites.net>
+<https://bnb-cn.azurewebsites.net/>
 
 ## Features
 

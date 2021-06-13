@@ -160,7 +160,7 @@ namespace API
             }
 
             // Uncomment before deploying to Azure
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             // Security headers
             app.UseXContentTypeOptions();

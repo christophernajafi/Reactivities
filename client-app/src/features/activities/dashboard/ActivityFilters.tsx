@@ -30,7 +30,7 @@ const ActivityFilters = () => {
           onClick={() => setPredicate("isHost", "true")}
           color={"blue"}
           name={"host"}
-          content={"I'm hosting"}
+          content={"I'm Hosting"}
         />
       </Menu>
       <Header
