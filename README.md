@@ -6,6 +6,10 @@ Social media app where Bed & Breakfast hosts can register an account, post an ac
 
 <https://bnb-cn.azurewebsites.net/>
 
+## Video Demonstration
+
+<https://youtu.be/Sb5FB4xLDkY>
+
 ## Features
 
 - Single page application built using React for user interface and MobX for state management.
@@ -21,8 +25,22 @@ Social media app where Bed & Breakfast hosts can register an account, post an ac
 - CORS enabled cross-origin requests.
 - Deployed online using Microsoft Azure Web Apps.
 
-<!-- Screenshot: scale image, 25% -->
+## Technology Stack
 
-## Author
+### Back End
+
+- C#
+- .NET
+- Microsoft SQL Server
+- Microsoft Azure
+
+### Front End
+
+- TypeScript
+- React
+- MobX
+- Semantic UI
+
+## Developer
 
 [Christopher Najafi](https://www.chrisnajafi.com/)
