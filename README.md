@@ -31,8 +31,10 @@ Social media app where Bed & Breakfast hosts can register an account, post an ac
 
 - C#
 - .NET
-- Microsoft SQL Server
 - Microsoft Azure
+- Microsoft SQL Server
+- Entity Framework
+- SignalR
 
 ### Front End
 
