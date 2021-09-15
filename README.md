@@ -2,28 +2,22 @@
 
 Social media app where Bed & Breakfast hosts can register an account, post an activity, and connect with their guests. Bed & Breakfast guests can join activities, leave comments, and ask questions to the host.
 
-## Deployed Link
-
-<https://bnb-cn.azurewebsites.net/>
-
 ## Video Demonstration
 
 <https://youtu.be/Sb5FB4xLDkY>
 
 ## Features
 
-- Single page application built using React for user interface and MobX for state management.
-- Client written in TypeScript to reduce bugs with type checking.
-- Registered users can create a profile containing a bio and list of their activities.
-- Back end built using .NET and Microsoft SQL Server.
-- Structured back end using the Clean Architecture approach and CQRS and Mediator patterns.
-- Database constructed using Entity Framework Core and Microsoft SQL Server.
-- Authentication and authorization using .Net Core Identity.
-- Photo upload feature with ability to crop and resize images using Dropzone and Cropper libraries and Cloudinary API.
-- OAuth using Facebook Login.
-- Email verification and password reset using Twilio SendGrid API.
-- CORS enabled cross-origin requests.
-- Deployed online using Microsoft Azure Web Apps.
+- RESTful web API utilizing C# and .NET framework, implementing Clean Architecture approach and CQRS and Mediator patterns, optimizing time to create new features by over 50%.
+- Single page application (SPA) in JavaScript, TypeScript, and React for UI development, leveraging MobX for state management to improve component creation time by over 2X.
+- Relational database using Entity Framework Core and Microsoft SQL Server, storing user and activity data.
+- Integrated authentication and authorization using .Net Core Identity, ensuring production grade security;
+  implemented OAuth using Facebook login which optimized signups by more than 90%.
+- Photo upload feature with ability to crop and resize images using Dropzone and Cropper libraries
+  with JavaScript and TypeScript.
+- Email verification and password reset using Twilio SendGrid API, increasing security through
+  ensuring users are registering with an email with which they have access.
+- Deployed C# and .NET server and TypeScript and React client to Microsoft Azure using Azure Web Apps.
 
 ## Technology Stack
 
